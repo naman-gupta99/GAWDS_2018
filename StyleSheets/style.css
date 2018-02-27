@@ -4,6 +4,9 @@
   outline:0;
 }
 
+body{
+  overflow-x: hidden;
+}
 /* css for container in which all animation occurs */
 #animation{
   width:100%;
@@ -13,20 +16,39 @@
 /* css for background of paperplane */
 
 #background{
+  position: absolute;
   width:100%;
-  height:100vh;
-  background-image: url('../Includes/background.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  height:100%;
+  background: linear-gradient(#0066B2 ,#60D4FF);
 }
 
-/* css for paperplane */
+#clouds{
+  position: absolute;
+  height: auto;
+  width:auto;
+  bottom:-5%;
+  right: -10%;
+  left:-20%;
+}
+
+object{
+  position: relative;
+  width:100%;
+}
+
+@media screen and (min-width:764px) {
+  #clouds{
+    top:50%;
+  }
+}
+
+/*css for paperplane */
 @keyframes fly {
   0% {
-      transform: perspective(1000px) rotateY(360deg) translateX(-50vh) translateY(-300%) translateZ(50vw);
+      transform: perspective(1000px) rotateY(270deg) translateX(10vh) translateY(-300%) translateZ(50vw);
   }
   75% {
-      transform: perspective(1000px) rotateY(-720deg) translateX(50vh) translateY(50%) translateZ(0);
+      transform: perspective(1000px) rotateY(-450deg) translateX(40vh) translateY(50%) translateZ(0);
   }
 }
 
@@ -43,7 +65,7 @@
 .container{
   transform:rotateZ(0deg) rotateX(-20deg) rotateY(-90deg);
   transform-style:preserve-3d;
-  animation:fly 10s linear;
+  animation:fly 5s ease-out 0.5s backwards;
 }
 
 #lside{
@@ -74,4 +96,53 @@
   border-left:100px solid transparent;
   transform:rotate(-22deg) rotateX(-55deg) rotateY(10deg) rotateZ(25deg);
   transform-origin:top;
+}
+
+.wind {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    perspective: 800px
+}
+.wind > div {
+    position: absolute;
+    height: 5px;
+    background: linear-gradient(to right, white, transparent);
+    border-radius: 10px;
+    opacity:0;
+}
+#lw1 {
+    top: 0;
+    left: 10%;
+    width: 20vh;
+}
+#lw2 {
+    top: 50%;
+    left: 0;
+    width: 50vh;
+}
+#lw3 {
+    top: 80%;
+    left: 0;
+    width: 40vh;
+}
+#rw1 {
+    top: 10%;
+    right: 0;
+    width: 30vh;
+}
+#rw2 {
+    top: 20%;
+    right: 0;
+    width: 40vh;
+}
+#rw3 {
+    top: 70%;
+    right: 0;
+    width: 20vh;
+}
+#rw4 {
+    top: 100%;
+    right: 20%;
+    width: 50vh;
 }

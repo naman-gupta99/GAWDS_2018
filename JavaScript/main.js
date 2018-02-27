@@ -35,7 +35,110 @@ $(function(){
   //   delay:12
   // })
 
+  TweenMax.to('object',20,{
+    scale:1.2,
+    delay:5,
+    repeat:-1,
+    yoyo:true
+  });
 
+  TweenMax.fromTo("#lw1",0.5,{
+    rotationY:"90deg",
+    z:"-10000vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  },{
+    rotationY:"90deg",
+    z:"500vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  })
+
+  TweenMax.fromTo("#lw2",1.2,{
+    rotationY:"90deg",
+    z:"-10000vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  },{
+    rotationY:"90deg",
+    z:"500vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  })
+
+  TweenMax.fromTo("#lw3",1,{
+    rotationY:"90deg",
+    z:"-10000vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  },{
+    rotationY:"90deg",
+    z:"500vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  })
+
+  TweenMax.fromTo("#rw1",0.5,{
+    rotationY:"90deg",
+    z:"-10000vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  },{
+    rotationY:"90deg",
+    z:"500vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  })
+
+  TweenMax.fromTo("#rw2",1,{
+    rotationY:"90deg",
+    z:"-10000vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  },{
+    rotationY:"90deg",
+    z:"500vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  })
+
+  TweenMax.fromTo("#rw3",1.2,{
+    rotationY:"90deg",
+    z:"-10000vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  },{
+    rotationY:"90deg",
+    z:"500vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  })
+
+  TweenMax.fromTo("#rw4",0.8,{
+    rotationY:"90deg",
+    z:"-10000vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  },{
+    rotationY:"90deg",
+    z:"500vh",
+    repeat:-1,
+    opacity:1,
+    delay:6
+  })
 });
 
 // (function give(){
