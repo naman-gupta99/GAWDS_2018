@@ -1,0 +1,77 @@
+*{
+  margin:0;
+  padding:0;
+  outline:0;
+}
+
+/* css for container in which all animation occurs */
+#animation{
+  width:100%;
+  height:1000vh;
+}
+
+/* css for background of paperplane */
+
+#background{
+  width:100%;
+  height:100vh;
+  background-image: url('../Includes/background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* css for paperplane */
+@keyframes fly {
+  0% {
+      transform: perspective(1000px) rotateY(360deg) translateX(-50vh) translateY(-300%) translateZ(50vw);
+  }
+  75% {
+      transform: perspective(1000px) rotateY(-720deg) translateX(50vh) translateY(50%) translateZ(0);
+  }
+}
+
+#plane{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  transform-style: preserve-3d;
+  width:50px;
+  height:50px;
+}
+
+.container{
+  transform:rotateZ(0deg) rotateX(-20deg) rotateY(-90deg);
+  transform-style:preserve-3d;
+  animation:fly 10s linear;
+}
+
+#lside{
+  border-top:50px solid transparent;
+  border-right:100px solid  blue;
+  transform:rotate(-5deg) rotateY(0deg) rotateX(-10deg);
+  transform-origin:bottom;
+}
+#rside{
+  margin-top:-50px;
+  border-top:50px solid transparent;
+  border-right:100px solid blue;
+  transform:rotate(-5deg) rotateY(0deg) rotateX(10deg);
+  transform-origin:bottom;
+}
+#lwing{
+   margin-top:-50px;
+  border-bottom:50px solid red;
+  border-right:60px solid transparent;
+  border-left:100px solid transparent;
+  transform:rotate(-22deg) rotateX(55deg) rotateY(-10deg) rotateZ(25deg);
+  transform-origin:top;
+}
+#rwing{
+  margin-top:-50px;
+  border-bottom:50px solid red;
+  border-right:60px solid transparent;
+  border-left:100px solid transparent;
+  transform:rotate(-22deg) rotateX(-55deg) rotateY(10deg) rotateZ(25deg);
+  transform-origin:top;
+}
