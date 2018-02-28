@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Desk</title>
-    <link rel="stylesheet" href="StyleSheets/master.css">
-  </head>
-  <body>
-    <svg width="1422.67" height="644" version="1.1" viewBox="0 0 1422.67 644" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1422.67" height="644" version="1.1" viewBox="0 0 1422.67 644" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     	<g>
     		<path d="m-0.0351859 473.247 1386.76 67.3013-1.771 58.4459-1384.1-68.1868z" fill="#050319"/>
     		<path d="m1386.73 540.538-37.1928-182.422h-104.494l-10.1837 26.5663s-50.9188 16.8253-116.006-3.98495l-10.1838-26.1235-81.0272-1.77108v7.96989l-40.7351 58.0031s-7.08435 4.42772-18.1536 2.65663l-515.829-20.8103s-4.87048 0.44277-7.96989-2.65663c-3.0994-3.0994-1.32831-11.0693-1.32831-11.0693l112.907-55.7892-222.714-9.2982-333.85 151.428z" fill="#66809d"/>
@@ -123,6 +115,3 @@
     		<path d="m917.786 122.712-17.7298 177.765 58.7884 1.39972 18.663-180.098z" fill="#fff6d5"/>
     	</g>
     </svg>
-
-  </body>
-</html>
