@@ -31,12 +31,18 @@ body{
   left:-20%;
 }
 
-object{
+#clouds object{
   position: relative;
   width:100%;
 }
 
-@media screen and (min-width:764px) {
+@media screen and (min-width:1000px) {
+  #clouds{
+    top:60%;
+  }
+}
+
+@media screen and (min-width:1150px) {
   #clouds{
     top:50%;
   }
@@ -70,14 +76,14 @@ object{
 
 #lside{
   border-top:50px solid transparent;
-  border-right:100px solid  blue;
+  border-right:100px solid  #333;
   transform:rotate(-5deg) rotateY(0deg) rotateX(-10deg);
   transform-origin:bottom;
 }
 #rside{
   margin-top:-50px;
   border-top:50px solid transparent;
-  border-right:100px solid blue;
+  border-right:100px solid #333;
   transform:rotate(-5deg) rotateY(0deg) rotateX(10deg);
   transform-origin:bottom;
 }
@@ -98,6 +104,7 @@ object{
   transform-origin:top;
 }
 
+/* wind css */
 .wind {
     position: absolute;
     width: 100%;
@@ -105,7 +112,7 @@ object{
     perspective: 800px
 }
 .wind > div {
-    position: absolute;
+    position: fixed;
     height: 5px;
     background: linear-gradient(to right, white, transparent);
     border-radius: 10px;
@@ -145,4 +152,74 @@ object{
     top: 100%;
     right: 20%;
     width: 50vh;
+}
+
+/* css for wording */
+.wording{
+  position: absolute;
+  width:auto;
+  top:10%;
+  right:10%;
+  left:10%;
+  opacity: 0;
+}
+
+.wording object{
+  position: relative;
+  width:100%;
+}
+/* css for logos */
+
+/* css logo */
+.css{
+  position: absolute;
+  width:10%;
+  left:20%;
+  top:65%;
+  height: auto;
+  transform:translate(-50%,-50%) scale(0);
+}
+
+/* @media screen and (min-width:760px) {
+  .css{
+    width:20%;
+  }
+}
+
+@media screen and (min-width:1100px) {
+  .css{
+    width: 10%;
+  }
+} */
+
+.css object{
+  position: relative;
+  width:100%
+}
+
+/* html logo */
+.html{
+  position: absolute;
+  width:10%;
+  top:30%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+}
+
+.html object{
+  position: relative;
+  width: 100%;
+}
+
+/* JavaScript logo */
+.js{
+  position: absolute;
+  width:10%;
+  top:65%;
+  left:80%;
+  transform:translate(-50%,-50%) scale(0);
+}
+.js object{
+  position: relative;
+  width:100%;
 }
