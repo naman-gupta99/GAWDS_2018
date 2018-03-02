@@ -16,6 +16,14 @@ $(function(){
   //
   // console.log(cnWidth,cnHeight,wWidth,wHeight,pos);
 
+  // get the page to the top after every refresh
+  $(window).on('beforeunload', function() {
+      $(window).scrollTop(0);
+  });
+
+  window.setTimeout(function(){
+    document.querySelector('body').style.overflowY = "auto"
+  },6000);
 
   function planeAnimation(p1){
 
@@ -205,7 +213,7 @@ $(function(){
     var cssl = $('.css');
     var htmll = $('.html');
     var jsl = $('.js');
-    var wormhole = $('.wormhole');
+    var wormhole = $('.portal');
 
     var time = new TimelineMax({paused:true});
 
@@ -267,14 +275,11 @@ $(function(){
       .to(plane,5,{
         left:"50%",
         top:"50%",
-        rotationX:90,
-        rotationY:180,
+        rotation:360,
         scale:0
       })
 
       .to(wormhole,2,{
-        rotationX:90,
-        rotationY:90,
         left:"50%",
         top:"50%",
         scale:0,
@@ -292,7 +297,7 @@ $(function(){
   logoAnimation();
 
   function emerge(){
-    var wormhole = $('.wormhole')
+    var wormhole = $('.portal')
     var time = new TimelineMax({paused:true});
 
     time
@@ -301,8 +306,6 @@ $(function(){
         top:"20%"
       })
       .to(wormhole,1,{
-        rotationX:0,
-        rotationY:0,
         scale:1
       })
       .to([$("#lwing"),$("#rwing")],0.1,{
@@ -313,8 +316,7 @@ $(function(){
         top:"20%"
       })
       .to(plane,1,{
-        rotationX:0,
-        rotationY:0,
+        rotation:0,
         scale:1
       })
       .to(wormhole,0.5,{

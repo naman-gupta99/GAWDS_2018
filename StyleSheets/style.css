@@ -6,6 +6,7 @@
 
 body{
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* css for container in which all animation occurs */
@@ -228,8 +229,8 @@ body{
   }
 }
 
-/* css for wormhole */
-.wormhole{
+/* css for portal */
+.portal{
   position:fixed;
   width:20%;
   top:50%;
