@@ -263,11 +263,6 @@ body{
   transform:translate(-50%,-50%) scale(0);
   opacity:0;
 }
-.portal object{
-  position:relative;
-  width:100%;
-}
-
 @media screen and (max-width:1100px) {
   .css,.html,.js{
     width:10%;

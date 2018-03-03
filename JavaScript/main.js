@@ -446,9 +446,11 @@ $(function(){
       },{
         autoAlpha:0
       },"-=5")
-      .fromTo(wormhole,5,{
+      .to(wormhole,0.1,{
         top:"30%",
-        left:"50%",
+        left:"50%"
+      })
+      .fromTo(wormhole,5,{
         rotationY:0,
         rotationX:0,
         autoAlpha:0,
@@ -459,13 +461,16 @@ $(function(){
       })
       .fromTo(plane,5,{
       },{
+        top:"30%",
         left:"50%",
         rotation:0,
         scale:0
       })
       .to(wormhole,5,{
         scale:0,
-        autoAlpha:0
+        autoAlpha:0,
+        top:"30%",
+        left:"50%"
       })
       .fromTo(wormhole,1,{
       },{
