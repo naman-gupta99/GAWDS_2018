@@ -2,6 +2,7 @@ $(function(){
   var plane = $('#plane'),
       bdy = $('body'),
       controller = new ScrollMagic.Controller(),
+      wormhole = $('.portal'),
       wHeight = window.innerHeight;
   //     cnWidth = container.width(),
   //     cnHeight = container.height(),
@@ -42,7 +43,7 @@ $(function(){
       })
       .to(plane,5,{
         rotation:-30,
-        left:"30%"
+        left:"15%"
       })
       .to(plane,1,{
         rotation:5
@@ -209,11 +210,10 @@ $(function(){
   }
   wordAnimation();
 
-  function logoAnimation(){
+  function frontLogoAnimation(){
     var cssl = $('.css');
     var htmll = $('.html');
     var jsl = $('.js');
-    var wormhole = $('.portal');
 
     var time = new TimelineMax({paused:true});
 
@@ -294,10 +294,9 @@ $(function(){
     .setTween( time.play() )
     .addTo(controller);
   }
-  logoAnimation();
+  frontLogoAnimation();
 
   function emerge(){
-    var wormhole = $('.portal')
     var time = new TimelineMax({paused:true});
 
     time
@@ -352,38 +351,210 @@ $(function(){
       .to(plane,1,{
         rotationX:0,
         rotation:0
-      });
+      })
+      .to(plane,10,{
+        delay:2,
+        scale:0.7,
+        top:"40%",
+        rotationX:-20
+      })
+      .to(plane,10,{
+        scale:0.5,
+        rotationX:0
+      })
+      .to(plane,10,{
+        delay:5,
+        left:"20%",
+        rotation:-360,
+        transformOrigin:"50% 100%"
+      })
 
     var scene = new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:wHeight/2,
+      duration:wHeight,
       offset:4*wHeight
     })
     .setTween(time.play())
     .addTo(controller);
   }
+
+  function backLogoAnimation(){
+    var nodejs = $('.nodejs');
+    var django = $('.django');
+    var sql = $('.sql');
+    var firebase = $('.firebase');
+
+    var time = new TimelineMax({paused:true});
+
+    time
+      .fromTo(nodejs,5,{
+        autoAlpha:1,
+        scale:0,
+        top:"-10%"
+      },{
+        scale:1,
+        top:"30%"
+      })
+      .fromTo(nodejs,5,{
+        autoAlpha:1
+      },{
+        autoAlpha:0
+      })
+      .fromTo(django,5,{
+        autoAlpha:1,
+        scale:0,
+        top:"-10%"
+      },{
+        scale:1,
+        top:"30%"
+      },"-=5")
+      .fromTo(django,5,{
+        autoAlpha:1
+      },{
+        autoAlpha:0
+      })
+      .fromTo(sql,5,{
+        autoAlpha:1,
+        scale:0,
+        top:"-10%"
+      },{
+        top:"30%",
+        scale:1
+      },"-=5")
+      .fromTo(sql,5,{
+        autoAlpha:1
+      },{
+        autoAlpha:0
+      })
+      .fromTo(firebase,5,{
+        autoAlpha:1,
+        scale:0,
+        top:"-10%"
+      },{
+        top:"30%",
+        scale:1
+      },"-=5")
+      .fromTo(firebase,10,{
+        rotationY:0
+      },{
+        rotationY:1800,
+        ease:Power2.easeIn
+      })
+      .fromTo(firebase,5,{
+        autoAlpha:1
+      },{
+        autoAlpha:0
+      },"-=5")
+      .fromTo(wormhole,5,{
+        top:"30%",
+        left:"50%",
+        rotationY:0,
+        rotationX:0,
+        autoAlpha:0,
+        scale:0
+      },{
+        scale:1,
+        autoAlpha:1
+      })
+      .fromTo(plane,5,{
+      },{
+        left:"50%",
+        rotation:0,
+        scale:0
+      })
+      .to(wormhole,5,{
+        scale:0,
+        autoAlpha:0
+      })
+      .fromTo(wormhole,1,{
+      },{
+        scale:0.5,
+        autoAlpha:1,
+        top:"70%",
+        left:"10%",
+        onComplete:nextToBack
+      })
+
+      var scene = new ScrollMagic.Scene({
+        triggerHook:0,
+        triggerElement:bdy,
+        duration:1.5*wHeight,
+        offset:4*wHeight
+      })
+      .setTween(time.play())
+      .addTo(controller);
+  }
+  backLogoAnimation();
+
+  function nextToBack(){
+    console.log('kartik')
+    var time = new TimelineMax({paused:true});
+
+    time
+      .to(plane,1,{
+        top:"70%",
+        left:"10%"
+      })
+      .to([$("#lside"),$("#rside")],1,{
+        borderRight:"100px solid red"
+      })
+      .to(plane,5,{
+        rotation:360,
+        scale:1
+      })
+      .to(wormhole,5,{
+        scale:0,
+        autoAlpha:0
+      })
+      .to(plane,5,{
+        rotationX:-20,
+        rotationY:-20
+      })
+      .to(plane,10,{
+        left:"50%",
+        top:"50%"
+      })
+      .to(plane,5,{
+        rotationX:0,
+        rotationY:0
+      })
+      .to(plane,0.5,{
+        rotation:0
+      })
+      .to(plane,2,{
+        rotation:20
+      })
+      .to(plane,2,{
+        rotation:0
+      })
+      .to(plane,2,{
+        rotation:-20
+      })
+      .to(plane,2,{
+        rotation:0
+      })
+      .to(plane,2,{
+        rotation:20
+      })
+      .to(plane,2,{
+        rotation:0
+      })
+      .to(plane,2,{
+        rotation:-20
+      })
+      .to(plane,2,{
+        rotation:0
+      });
+
+    var scene = new ScrollMagic.Scene({
+      triggerElement:bdy,
+      triggerHook:0,
+      duration:wHeight,
+      offset:5.5*wHeight
+    })
+    .setTween(time.play())
+    .addTo(controller);
+  }
+
 });
-
-// (function give(){
-//   var wWidth = window.innerWidth;
-//   var wHeight = window.innerHeight;
-//   var position = $('.container').position();
-//   setTimeout(function(){
-//     console.log(position);
-//   },2000);
-// })();
-// var container = $('.container')[0];
-// var rect = container.getBoundingClientRect();
-// console.log(rect.top);
-// setInterval(function(){
-//   console.log(container.position.left)
-// },1000)
-
-// window.onresize = function(){
-// console.log(window.innerWidth);
-// }
-
-// var cont = $('.container')[0];
-// var rect = cont.getBoundingClientRect();
-// console.log(cont.clientHeight,cont.clientWidth,rect.top,rect.rightSide,rect.bottom,rect.left)

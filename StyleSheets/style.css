@@ -53,7 +53,7 @@ body{
 /*css for paperplane */
 @keyframes fly {
   0% {
-      transform: perspective(1000px) rotateY(270deg) translateX(15vh) translateY(-300%) translateZ(50vw);
+      transform: perspective(1000px) rotateY(270deg) translateX(20vh) translateY(-300%) translateZ(50vw);
   }
   75% {
       transform: perspective(1000px) rotateY(-450deg) translateX(40vh) translateY(50%) translateZ(0);
@@ -217,18 +217,43 @@ body{
   width:100%;
 }
 
-@media screen and (max-width:1100px) {
-  .css,.html,.js{
-    width:10%;
-  }
+/* php logo */
+.nodejs{
+  position: fixed;
+  left:50%;
+  top:10%;
+  width:20%;
+  transform:translate(-50%,-50%);
+  opacity: 0;
 }
-
-@media screen and (max-width:760px) {
-  .css,.html,.js{
-    width: 15%;
-  }
+.django{
+  position: fixed;
+  left:50%;
+  top:10%;
+  width:20%;
+  transform:translate(-50%,-50%);
+  opacity: 0;
 }
-
+.sql{
+  position: fixed;
+  left:50%;
+  top:10%;
+  width:20%;
+  transform:translate(-50%,-50%);
+  opacity: 0;
+}
+.firebase{
+  position: fixed;
+  left:50%;
+  top:10%;
+  width:10%;
+  transform:translate(-50%,-50%);
+  opacity: 0;
+}
+.nodejs object,.django object,.sql object,.firebase object{
+  position:relative;
+  width:100%;
+}
 /* css for portal */
 .portal{
   position:fixed;
@@ -237,4 +262,31 @@ body{
   left:50%;
   transform:translate(-50%,-50%) scale(0);
   opacity:0;
+}
+.portal object{
+  position:relative;
+  width:100%;
+}
+
+@media screen and (max-width:1100px) {
+  .css,.html,.js{
+    width:10%;
+  }
+  .portal{
+    width:30%;
+  }
+  .firebase{
+    width:20%;
+  }
+}
+@media screen and (max-width:760px) {
+  .css,.html,.js{
+    width: 15%;
+  }
+  .portal{
+    width:40%;
+  }
+  .firebase{
+    width:30%;
+  }
 }
