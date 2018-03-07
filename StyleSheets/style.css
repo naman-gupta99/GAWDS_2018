@@ -170,17 +170,41 @@ body{
   position: relative;
   width:100%;
 }
+
+/* css for low poly letters */
+.frontpoly{
+  position:fixed;
+  width:30%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+/* css for fog */
+.fog{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height: 100%;
+  background-color: #ddd;
+  opacity:0;
+}
+
+.frontpoly svg path{
+  fill:#333;
+  transform:scale(0);
+}
+
 /* css for logos */
 
 /* css logo */
 .css{
   position: fixed;
   width:7%;
-  left:20%;
-  top:65%;
+  left:-50%;
+  top:150%;
   height: auto;
-  transform:translate(-50%,-50%) scale(0);
-  opacity:0;
+  transform:translate(-50%,-50%);
 }
 
 .css object{
@@ -192,10 +216,9 @@ body{
 .html{
   position: fixed;
   width:7%;
-  top:30%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  opacity:0;
+  top:150%;
+  left:150%;
+  transform:translate(-50%,-50%);
 }
 
 .html object{
@@ -207,10 +230,9 @@ body{
 .js{
   position: fixed;
   width:7%;
-  top:65%;
-  left:80%;
-  transform:translate(-50%,-50%) scale(0);
-  opacity:0;
+  top:-50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 .js object{
   position: relative;
@@ -221,39 +243,66 @@ body{
 .nodejs{
   position: fixed;
   left:50%;
-  top:10%;
+  top:-10%;
   width:20%;
-  transform:translate(-50%,-50%);
-  opacity: 0;
+  transform:translate(-50%,-50%) scale(0);
+  opacity: 1;
 }
 .django{
   position: fixed;
   left:50%;
-  top:10%;
+  top:-10%;
   width:20%;
-  transform:translate(-50%,-50%);
-  opacity: 0;
+  transform:translate(-50%,-50%) scale(0);
 }
 .sql{
   position: fixed;
   left:50%;
-  top:10%;
+  top:-10%;
   width:20%;
-  transform:translate(-50%,-50%);
-  opacity: 0;
+  transform:translate(-50%,-50%) scale(0);
 }
 .firebase{
   position: fixed;
   left:50%;
-  top:10%;
+  top:-10%;
   width:10%;
-  transform:translate(-50%,-50%);
-  opacity: 0;
+  transform:translate(-50%,-50%) scale(0);
 }
 .nodejs object,.django object,.sql object,.firebase object{
   position:relative;
   width:100%;
 }
+
+/* css for graphics logos */
+.illustrator{
+  position:fixed;
+  width:10%;
+  top:-20%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.draw{
+  position:fixed;
+  width:10%;
+  top:50%;
+  left:-20%;
+  transform:translate(-50%,-50%);
+}
+
+.photoshop{
+  position: fixed;
+  width:10%;
+  top:50%;
+  left:120%;
+  transform:translate(-50%,-50%);
+}
+.illustrator object,.draw object,.photoshop object{
+  position:relative;
+  width:100%;
+}
+
 /* css for portal */
 .portal{
   position:fixed;
@@ -273,6 +322,12 @@ body{
   .firebase{
     width:20%;
   }
+  .illustrator,.photoshop,.draw{
+    width:10%;
+  }
+  .frontpoly{
+    width:40%;
+  }
 }
 @media screen and (max-width:760px) {
   .css,.html,.js{
@@ -283,5 +338,11 @@ body{
   }
   .firebase{
     width:30%;
+  }
+  .illustrator,.photoshop,.draw{
+    width:20%;
+  }
+  .frontpoly{
+    width:50%;
   }
 }

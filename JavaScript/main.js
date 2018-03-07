@@ -31,43 +31,46 @@ $(function(){
     var time = new TimelineMax({paused:true});
 
     time
-      .to(plane,5,{
-        rotation:30,
-        rotationX:-30,
-        left:"80%",
-        top:"20%"
+      .to(plane,3,{
+        rotation:20
       })
-      .to(plane,2,{
-        rotationX:0,
+      .to(plane,3,{
         rotation:0
       })
-      .to(plane,5,{
-        rotation:-30,
-        left:"15%"
+      .to(plane,3,{
+        rotation:-20
       })
-      .to(plane,1,{
-        rotation:5
-      })
-      .to(plane,2,{
-        rotation:-10
-      })
-      .to(plane,1,{
+      .to(plane,3,{
         rotation:0
       })
-      .to(plane,1,{
-        rotation:5
+      .to(plane,3,{
+        rotation:20
       })
-      .to(plane,2,{
-        rotation:-10
-      })
-      .to(plane,1,{
+      .to(plane,3,{
         rotation:0
-      });
+      })
+      .to(plane,3,{
+        rotation:-20
+      })
+      .to(plane,3,{
+        rotation:0
+      })
+      .to(plane,3,{
+        rotationX:"5"
+      })
+      .to(plane,10,{
+        top:"80%",
+        rotationX:"10"
+      })
+      .to(plane,1,{
+        rotationX:"0"
+      })
+
 
     var scene = new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:2.5*wHeight
+      duration:wHeight
     })
     .setTween(time.play())
     .addTo(controller);
@@ -76,8 +79,9 @@ $(function(){
 
   function cloudAnimation(){
     var time = new TimelineMax({paused:true});
+
     time
-      .to('object',20,{
+      .to($('#clouds object'),20,{
         scale:1.2
       });
 
@@ -211,90 +215,68 @@ $(function(){
   wordAnimation();
 
   function frontLogoAnimation(){
-    var cssl = $('.css');
-    var htmll = $('.html');
-    var jsl = $('.js');
+    var css = $('.css');
+    var html = $('.html');
+    var js = $('.js');
+    var fog = $('.fog');
+    var path = $('.frontpoly svg path');
 
     var time = new TimelineMax({paused:true});
 
     time
-      .to(cssl,5,{
-        scale:1,
-        autoAlpha:1
-      })
-      .to(cssl,5,{
-        left:"50%",
-        x:"-50%",
+      .to(css,10,{
         top:"50%",
-        y:"-50%"
+        left:"50%",
+        yPercent:50,
+        xPercent:-50,
+        ease: Bounce.easeOut,
       })
-      .to(cssl,5,{
-        rotation:360,
-        scale:0,
+      .to(html,10,{
+        top:"50%",
+        left:"50%",
+        yPercent:50,
+        xPercent:50,
+        ease: Bounce.easeOut,
+      },"-=10")
+      .to(js,10,{
+        top:"50%",
+        left:"50%",
+        yPercent:-50,
+        ease: Bounce.easeOut,
+      },"-=10")
+      .to([css,html,js],3,{
         autoAlpha:0
-      })
-
-      .to(htmll,5,{
+      },"-=2")
+      .to(fog,10,{
+        opacity:0.8
+      },"-=7")
+      .to(fog,10,{
+        opacity:0
+      },"+=2")
+      .staggerTo(path,2,{
         scale:1,
-        autoAlpha:1
-      },0)
-      .to(htmll,5,{
-        top:"50%",
-        y:"-50%",
-        left:"50%",
-        x:"-50%"
-      },5)
-      .to(htmll,5,{
-        rotation:720,
+        transformOrigin:"center center",
+        ease:Elastic.easeOut
+      },0.05,"-=5")
+      .staggerTo(path,1,{
         scale:0,
-        autoAlpha:0
-      },10)
+        transformOrigin:"center center",
+        ease:Elastic.easeOut
+      },0.05);
 
-      .to(jsl,5,{
-        scale:1,
-        autoAlpha:1
-      },0)
-      .to(jsl,5,{
-        left:"50%",
-        x:"-50%",
-        top:"50%",
-        y:"-50%"
-      },5)
-      .to(jsl,5,{
-        rotation:-360,
-        scale:0,
-        autoAlpha:0
-      },10)
 
-      .to(wormhole,2,{
-        scale:1,
-        rotation:360,
-        autoAlpha:1
-      },"-=1")
-
-      .to(plane,5,{
-        left:"50%",
-        top:"50%",
-        rotation:360,
-        scale:0
-      })
-
-      .to(wormhole,2,{
-        left:"50%",
-        top:"50%",
-        scale:0,
-        onComplete:emerge
-      })
     var scene =new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:2*wHeight,
+      duration:3*wHeight,
       offset:wHeight
     })
     .setTween( time.play() )
     .addTo(controller);
   }
   frontLogoAnimation();
+
+
 
   function emerge(){
     var time = new TimelineMax({paused:true});
@@ -385,82 +367,54 @@ $(function(){
     var sql = $('.sql');
     var firebase = $('.firebase');
 
-    var time = new TimelineMax({paused:true});
+    var time = new TimelineMax();
 
     time
-      .fromTo(nodejs,5,{
-        autoAlpha:1,
-        scale:0,
-        top:"-10%"
-      },{
+      .to(nodejs,5,{
         scale:1,
         top:"30%"
       })
-      .fromTo(nodejs,5,{
-        autoAlpha:1
-      },{
+      .to(nodejs,5,{
         autoAlpha:0
       })
-      .fromTo(django,5,{
-        autoAlpha:1,
-        scale:0,
-        top:"-10%"
-      },{
+      .to(django,5,{
         scale:1,
         top:"30%"
       },"-=5")
-      .fromTo(django,5,{
-        autoAlpha:1
-      },{
+      .to(django,5,{
         autoAlpha:0
       })
-      .fromTo(sql,5,{
-        autoAlpha:1,
-        scale:0,
-        top:"-10%"
-      },{
+      .to(sql,5,{
         top:"30%",
         scale:1
       },"-=5")
-      .fromTo(sql,5,{
-        autoAlpha:1
-      },{
+      .to(sql,5,{
         autoAlpha:0
       })
-      .fromTo(firebase,5,{
-        autoAlpha:1,
-        scale:0,
-        top:"-10%"
-      },{
+      .to(firebase,5,{
         top:"30%",
         scale:1
       },"-=5")
-      .fromTo(firebase,10,{
-        rotationY:0
-      },{
+      .to(firebase,10,{
         rotationY:1800,
         ease:Power2.easeIn
       })
-      .fromTo(firebase,5,{
-        autoAlpha:1
-      },{
+      .to(firebase,5,{
         autoAlpha:0
       },"-=5")
       .to(wormhole,0.1,{
         top:"30%",
-        left:"50%"
-      })
-      .fromTo(wormhole,5,{
+        left:"50%",
         rotationY:0,
         rotationX:0,
         autoAlpha:0,
         scale:0
-      },{
+      })
+      .to(wormhole,5,{
         scale:1,
         autoAlpha:1
       })
-      .fromTo(plane,5,{
-      },{
+      .to(plane,5,{
         top:"30%",
         left:"50%",
         rotation:0,
@@ -472,12 +426,13 @@ $(function(){
         top:"30%",
         left:"50%"
       })
-      .fromTo(wormhole,1,{
-      },{
+      .to(wormhole,0.1,{
+        top:"70%",
+        left:"10%"
+      })
+      .to(wormhole,1,{
         scale:0.5,
         autoAlpha:1,
-        top:"70%",
-        left:"10%",
         onComplete:nextToBack
       })
 
@@ -562,4 +517,63 @@ $(function(){
     .addTo(controller);
   }
 
+  function graphicsAnimation(){
+    var illus = $(".illustrator");
+    var pts = $(".photoshop");
+    var draw = $(".draw");
+
+
+    var time = new TimelineMax({paused:true});
+
+    time
+      .to(illus,5,{
+        top:"50%",
+        yPercent:-100
+      })
+      .to(draw,5,{
+        left:"50%",
+        xPercent:-100
+      },"-=5")
+      .to(pts,5,{
+        left:"50%",
+        xPercent:100
+      },"-=5")
+      .to(illus,5,{
+        bezier:{
+          curviness:1,values:[
+            {xPercent:0,yPercent:-100},{xPercent:100,yPercent:0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100}
+          ]
+      }
+      })
+      .to(draw,5,{
+        bezier:{
+          curviness:1,values:[
+            {xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100},{xPercent:100,yPercent:0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0}
+          ]
+        }
+      },"-=5")
+      .to(pts,5,{
+        bezier:{
+          curviness:1,values:[
+            {xPercent:100,yPercent:-0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100},{xPercent:100,yPercent:0}
+          ]
+        }
+      },"-=5")
+      .to([illus,pts,draw],5,{
+        scale:0
+      },"-=5")
+      .to(wormhole,5,{
+        autoAlpha:1,
+        scale:1
+      },"-=5");
+
+      var scene = new ScrollMagic.Scene({
+        triggerElement:bdy,
+        triggerHook:0,
+        duration:2*wHeight
+      })
+      .setTween(time.play())
+      .addTo(controller);
+  }
+  graphicsAnimation();
 });
