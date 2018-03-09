@@ -2,7 +2,6 @@ $(function(){
   var plane = $('#plane'),
       bdy = $('body'),
       controller = new ScrollMagic.Controller(),
-      wormhole = $('.portal'),
       wHeight = window.innerHeight;
   //     cnWidth = container.width(),
   //     cnHeight = container.height(),
@@ -25,57 +24,6 @@ $(function(){
   window.setTimeout(function(){
     document.querySelector('body').style.overflowY = "auto"
   },6000);
-
-  function planeAnimation(p1){
-
-    var time = new TimelineMax({paused:true});
-
-    time
-      .to(plane,3,{
-        rotation:20
-      })
-      .to(plane,3,{
-        rotation:0
-      })
-      .to(plane,3,{
-        rotation:-20
-      })
-      .to(plane,3,{
-        rotation:0
-      })
-      .to(plane,3,{
-        rotation:20
-      })
-      .to(plane,3,{
-        rotation:0
-      })
-      .to(plane,3,{
-        rotation:-20
-      })
-      .to(plane,3,{
-        rotation:0
-      })
-      .to(plane,3,{
-        rotationX:"5"
-      })
-      .to(plane,10,{
-        top:"80%",
-        rotationX:"10"
-      })
-      .to(plane,1,{
-        rotationX:"0"
-      })
-
-
-    var scene = new ScrollMagic.Scene({
-      triggerElement:bdy,
-      triggerHook:0,
-      duration:wHeight
-    })
-    .setTween(time.play())
-    .addTo(controller);
-  }
-  planeAnimation();
 
   function cloudAnimation(){
     var time = new TimelineMax({paused:true});
@@ -214,12 +162,63 @@ $(function(){
   }
   wordAnimation();
 
+  function planeAnimation(p1){
+
+    var time = new TimelineMax({paused:true});
+
+    time
+      .to(plane,3,{
+        rotation:20
+      })
+      .to(plane,3,{
+        rotation:0
+      })
+      .to(plane,3,{
+        rotation:-20
+      })
+      .to(plane,3,{
+        rotation:0
+      })
+      .to(plane,3,{
+        rotation:20
+      })
+      .to(plane,3,{
+        rotation:0
+      })
+      .to(plane,3,{
+        rotation:-20
+      })
+      .to(plane,3,{
+        rotation:0
+      })
+      .to(plane,3,{
+        rotationX:"5"
+      })
+      .to(plane,10,{
+        top:"80%",
+        rotationX:"10"
+      })
+      .to(plane,1,{
+        rotationX:"0"
+      })
+
+
+    var scene = new ScrollMagic.Scene({
+      triggerElement:bdy,
+      triggerHook:0,
+      duration:2*wHeight
+    })
+    .setTween(time.play())
+    .addTo(controller);
+  }
+  planeAnimation();
+
   function frontLogoAnimation(){
     var css = $('.css');
     var html = $('.html');
     var js = $('.js');
     var fog = $('.fog');
-    var path = $('.frontpoly svg path');
+    var frontPath = $('.frontpoly svg g path');
 
     var time = new TimelineMax({paused:true});
 
@@ -253,121 +252,50 @@ $(function(){
       .to(fog,10,{
         opacity:0
       },"+=2")
-      .staggerTo(path,2,{
+      .staggerTo(frontPath,2,{
         scale:1,
         transformOrigin:"center center",
         ease:Elastic.easeOut
       },0.05,"-=5")
-      .staggerTo(path,1,{
-        scale:0,
+      .staggerTo(frontPath,10,{
+        x:"10%",
+        y:"-10%",
         transformOrigin:"center center",
         ease:Elastic.easeOut
-      },0.05);
+      },0.01)
+      .to(frontPath,1,{
+        autoAlpha:0
+      },"-=10")
+      .to(plane,2,{
+        rotationX:-20
+      })
+      .to(plane,5,{
+        top:"50%",
+        left:"50%",
+        rotationX:0
+      })
 
 
     var scene =new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:3*wHeight,
-      offset:wHeight
+      duration:5*wHeight,
+      offset:2*wHeight
     })
     .setTween( time.play() )
     .addTo(controller);
   }
   frontLogoAnimation();
 
-
-
-  function emerge(){
-    var time = new TimelineMax({paused:true});
-
-    time
-      .to(wormhole,0.1,{
-        left:"80%",
-        top:"20%"
-      })
-      .to(wormhole,1,{
-        scale:1
-      })
-      .to([$("#lwing"),$("#rwing")],0.1,{
-        borderBottom:"50px solid green"
-      })
-      .to(plane,0.1,{
-        left:"80%",
-        top:"20%"
-      })
-      .to(plane,1,{
-        rotation:0,
-        scale:1
-      })
-      .to(wormhole,0.5,{
-        rotationY:90,
-        rotationX:-90,
-        autoAlpha:0,
-        scale:0,
-        onComplete:rest
-      });
-
-    var scene = new ScrollMagic.Scene({
-      triggerElement:bdy,
-      triggerHook:0,
-      duration:wHeight,
-      offset:3*wHeight
-    })
-    .setTween(time.play())
-    .addTo(controller);
-  }
-
-  function rest(){
-    var time = new TimelineMax({paused:true});
-
-    time
-      .to(plane,1,{
-      rotationX:10,
-      rotation:-10
-      })
-      .to(plane,5,{
-        left:"50%",
-        top:"50%",
-      })
-      .to(plane,1,{
-        rotationX:0,
-        rotation:0
-      })
-      .to(plane,10,{
-        delay:2,
-        scale:0.7,
-        top:"40%",
-        rotationX:-20
-      })
-      .to(plane,10,{
-        scale:0.5,
-        rotationX:0
-      })
-      .to(plane,10,{
-        delay:5,
-        left:"20%",
-        rotation:-360,
-        transformOrigin:"50% 100%"
-      })
-
-    var scene = new ScrollMagic.Scene({
-      triggerElement:bdy,
-      triggerHook:0,
-      duration:wHeight,
-      offset:4*wHeight
-    })
-    .setTween(time.play())
-    .addTo(controller);
-  }
-
   function backLogoAnimation(){
     var nodejs = $('.nodejs');
     var django = $('.django');
     var sql = $('.sql');
     var firebase = $('.firebase');
+    var backPath = $('.backpoly svg path');
+    var portalWhole = $('.portalWhole');
 
-    var time = new TimelineMax();
+    var time = new TimelineMax({paused:true});
 
     time
       .to(nodejs,5,{
@@ -396,184 +324,352 @@ $(function(){
         scale:1
       },"-=5")
       .to(firebase,10,{
-        rotationY:1800,
+        rotationY:900,
         ease:Power2.easeIn
       })
+
+      .to(plane,0.5,{
+        rotation:-20
+      },"-=7")
+      .to(plane,5,{
+        left:"10%",
+        rotation:-360
+      })
+
       .to(firebase,5,{
         autoAlpha:0
       },"-=5")
-      .to(wormhole,0.1,{
-        top:"30%",
-        left:"50%",
-        rotationY:0,
-        rotationX:0,
-        autoAlpha:0,
-        scale:0
+
+      .to(portalWhole,5,{
+        scale:1
       })
-      .to(wormhole,5,{
+
+      .staggerTo(backPath,2,{
         scale:1,
-        autoAlpha:1
-      })
-      .to(plane,5,{
-        top:"30%",
-        left:"50%",
-        rotation:0,
-        scale:0
-      })
-      .to(wormhole,5,{
-        scale:0,
-        autoAlpha:0,
-        top:"30%",
-        left:"50%"
-      })
-      .to(wormhole,0.1,{
-        top:"70%",
-        left:"10%"
-      })
-      .to(wormhole,1,{
-        scale:0.5,
-        autoAlpha:1,
-        onComplete:nextToBack
-      })
+        transformOrigin:"center center",
+        ease: RoughEase.ease.config({
+          template: Power0.easeNone,
+          strength: 1,
+          points: 20,
+          taper: "none",
+          randomize: true,
+          clamp: false
+        })
+      },0.03)
+      .staggerTo(backPath,10,{
+        x:"-10%",
+        y:"10%",
+        transformOrigin:"center center",
+        ease:Elastic.easeOut
+      },0.01,"+=5")
+      .to(backPath,5,{
+        autoAlpha:0
+      },"-=10")
+
+
+
 
       var scene = new ScrollMagic.Scene({
         triggerHook:0,
         triggerElement:bdy,
-        duration:1.5*wHeight,
-        offset:4*wHeight
+        duration:5*wHeight,
+        offset:7*wHeight
       })
       .setTween(time.play())
       .addTo(controller);
   }
   backLogoAnimation();
 
-  function nextToBack(){
-    console.log('kartik')
-    var time = new TimelineMax({paused:true});
+  function portalAnimation(){
+
+    var portal = $('.portal');
+
+    var time = new TimelineMax();
 
     time
-      .to(plane,1,{
-        top:"70%",
-        left:"10%"
+      .to(plane,0.1,{
+        rotation:0
       })
-      .to([$("#lside"),$("#rside")],1,{
-        borderRight:"100px solid red"
+      .to(plane,1,{
+        rotation:20
       })
       .to(plane,5,{
-        rotation:360,
-        scale:1
+        left:"50%",
+        rotation:0
       })
-      .to(wormhole,5,{
-        scale:0,
+      .to(plane,5,{
+        rotationX:10
+      })
+      .to(portal,10,{
+        scale:10
+      })
+      .staggerFromTo(".stream>div",5,{
+          rotationY:"90deg",
+          z:"-5000vh",
+          opacity:0
+        },{
+          rotationY:"90deg",
+          z:"600vh",
+          opacity:1
+        },0.5,"-=10")
+      .staggerFromTo(".stream>div",5,{
+          rotationY:"90deg",
+          z:"-5000vh",
+          opacity:0
+        },{
+          rotationY:"90deg",
+          z:"600vh",
+          opacity:1
+        },0.5)
+
+      .to(".stream>div",1,{
         autoAlpha:0
       })
-      .to(plane,5,{
-        rotationX:-20,
-        rotationY:-20
-      })
-      .to(plane,10,{
-        left:"50%",
-        top:"50%"
+      .to($('.whitedot'),10,{
+        scale:500,
+        transformOrigin:'50% 50%'
       })
       .to(plane,5,{
-        rotationX:0,
-        rotationY:0
+        rotationX:0
       })
-      .to(plane,0.5,{
-        rotation:0
-      })
-      .to(plane,2,{
-        rotation:20
-      })
-      .to(plane,2,{
-        rotation:0
-      })
-      .to(plane,2,{
-        rotation:-20
-      })
-      .to(plane,2,{
-        rotation:0
-      })
-      .to(plane,2,{
-        rotation:20
-      })
-      .to(plane,2,{
-        rotation:0
-      })
-      .to(plane,2,{
-        rotation:-20
-      })
-      .to(plane,2,{
-        rotation:0
-      });
-
-    var scene = new ScrollMagic.Scene({
-      triggerElement:bdy,
-      triggerHook:0,
-      duration:wHeight,
-      offset:5.5*wHeight
-    })
-    .setTween(time.play())
-    .addTo(controller);
-  }
-
-  function graphicsAnimation(){
-    var illus = $(".illustrator");
-    var pts = $(".photoshop");
-    var draw = $(".draw");
-
-
-    var time = new TimelineMax({paused:true});
-
-    time
-      .to(illus,5,{
-        top:"50%",
-        yPercent:-100
-      })
-      .to(draw,5,{
-        left:"50%",
-        xPercent:-100
-      },"-=5")
-      .to(pts,5,{
-        left:"50%",
-        xPercent:100
-      },"-=5")
-      .to(illus,5,{
-        bezier:{
-          curviness:1,values:[
-            {xPercent:0,yPercent:-100},{xPercent:100,yPercent:0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100}
-          ]
-      }
-      })
-      .to(draw,5,{
-        bezier:{
-          curviness:1,values:[
-            {xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100},{xPercent:100,yPercent:0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0}
-          ]
-        }
-      },"-=5")
-      .to(pts,5,{
-        bezier:{
-          curviness:1,values:[
-            {xPercent:100,yPercent:-0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100},{xPercent:100,yPercent:0}
-          ]
-        }
-      },"-=5")
-      .to([illus,pts,draw],5,{
-        scale:0
-      },"-=5")
-      .to(wormhole,5,{
-        autoAlpha:1,
-        scale:1
-      },"-=5");
 
       var scene = new ScrollMagic.Scene({
         triggerElement:bdy,
         triggerHook:0,
-        duration:2*wHeight
+        duration:5*wHeight,
+        offset:12*wHeight
       })
       .setTween(time.play())
       .addTo(controller);
+
+
   }
-  graphicsAnimation();
+  portalAnimation();
+
+  // function demo(){
+  //   var portal = $('.portal');
+  //
+  //   var time = new TimelineMax();
+  //
+  //   time
+  //     .to(portal,10,{
+  //       scale:10,
+  //       transformOrigin:"center center"
+  //     })
+  // }
+  // demo();
+
+  // function emerge(){
+  //   var time = new TimelineMax({paused:true});
+  //
+  //   time
+  //     .to(wormhole,0.1,{
+  //       left:"80%",
+  //       top:"20%"
+  //     })
+  //     .to(wormhole,1,{
+  //       scale:1
+  //     })
+  //     .to([$("#lwing"),$("#rwing")],0.1,{
+  //       borderBottom:"50px solid green"
+  //     })
+  //     .to(plane,0.1,{
+  //       left:"80%",
+  //       top:"20%"
+  //     })
+  //     .to(plane,1,{
+  //       rotation:0,
+  //       scale:1
+  //     })
+  //     .to(wormhole,0.5,{
+  //       rotationY:90,
+  //       rotationX:-90,
+  //       autoAlpha:0,
+  //       scale:0,
+  //       onComplete:rest
+  //     });
+  //
+  //   var scene = new ScrollMagic.Scene({
+  //     triggerElement:bdy,
+  //     triggerHook:0,
+  //     duration:wHeight,
+  //     offset:3*wHeight
+  //   })
+  //   .setTween(time.play())
+  //   .addTo(controller);
+  // }
+  //
+  // function rest(){
+  //   var time = new TimelineMax({paused:true});
+  //
+  //   time
+  //     .to(plane,1,{
+  //     rotationX:10,
+  //     rotation:-10
+  //     })
+  //     .to(plane,5,{
+  //       left:"50%",
+  //       top:"50%",
+  //     })
+  //     .to(plane,1,{
+  //       rotationX:0,
+  //       rotation:0
+  //     })
+  //     .to(plane,10,{
+  //       delay:2,
+  //       scale:0.7,
+  //       top:"40%",
+  //       rotationX:-20
+  //     })
+  //     .to(plane,10,{
+  //       scale:0.5,
+  //       rotationX:0
+  //     })
+  //     .to(plane,10,{
+  //       delay:5,
+  //       left:"20%",
+  //       rotation:-360,
+  //       transformOrigin:"50% 100%"
+  //     })
+  //
+  //   var scene = new ScrollMagic.Scene({
+  //     triggerElement:bdy,
+  //     triggerHook:0,
+  //     duration:wHeight,
+  //     offset:4*wHeight
+  //   })
+  //   .setTween(time.play())
+  //   .addTo(controller);
+  // }
+  //
+
+  // function nextToBack(){
+  //   console.log('kartik')
+  //   var time = new TimelineMax({paused:true});
+  //
+  //   time
+  //     .to(plane,1,{
+  //       top:"70%",
+  //       left:"10%"
+  //     })
+  //     .to([$("#lside"),$("#rside")],1,{
+  //       borderRight:"100px solid red"
+  //     })
+  //     .to(plane,5,{
+  //       rotation:360,
+  //       scale:1
+  //     })
+  //     .to(wormhole,5,{
+  //       scale:0,
+  //       autoAlpha:0
+  //     })
+  //     .to(plane,5,{
+  //       rotationX:-20,
+  //       rotationY:-20
+  //     })
+  //     .to(plane,10,{
+  //       left:"50%",
+  //       top:"50%"
+  //     })
+  //     .to(plane,5,{
+  //       rotationX:0,
+  //       rotationY:0
+  //     })
+  //     .to(plane,0.5,{
+  //       rotation:0
+  //     })
+  //     .to(plane,2,{
+  //       rotation:20
+  //     })
+  //     .to(plane,2,{
+  //       rotation:0
+  //     })
+  //     .to(plane,2,{
+  //       rotation:-20
+  //     })
+  //     .to(plane,2,{
+  //       rotation:0
+  //     })
+  //     .to(plane,2,{
+  //       rotation:20
+  //     })
+  //     .to(plane,2,{
+  //       rotation:0
+  //     })
+  //     .to(plane,2,{
+  //       rotation:-20
+  //     })
+  //     .to(plane,2,{
+  //       rotation:0
+  //     });
+  //
+  //   var scene = new ScrollMagic.Scene({
+  //     triggerElement:bdy,
+  //     triggerHook:0,
+  //     duration:wHeight,
+  //     offset:5.5*wHeight
+  //   })
+  //   .setTween(time.play())
+  //   .addTo(controller);
+  // }
+  //
+  // function graphicsAnimation(){
+  //   var illus = $(".illustrator");
+  //   var pts = $(".photoshop");
+  //   var draw = $(".draw");
+  //
+  //
+  //   var time = new TimelineMax({paused:true});
+  //
+  //   time
+  //     .to(illus,5,{
+  //       top:"50%",
+  //       yPercent:-100
+  //     })
+  //     .to(draw,5,{
+  //       left:"50%",
+  //       xPercent:-100
+  //     },"-=5")
+  //     .to(pts,5,{
+  //       left:"50%",
+  //       xPercent:100
+  //     },"-=5")
+  //     .to(illus,5,{
+  //       bezier:{
+  //         curviness:1,values:[
+  //           {xPercent:0,yPercent:-100},{xPercent:100,yPercent:0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100}
+  //         ]
+  //     }
+  //     })
+  //     .to(draw,5,{
+  //       bezier:{
+  //         curviness:1,values:[
+  //           {xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100},{xPercent:100,yPercent:0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0}
+  //         ]
+  //       }
+  //     },"-=5")
+  //     .to(pts,5,{
+  //       bezier:{
+  //         curviness:1,values:[
+  //           {xPercent:100,yPercent:-0},{xPercent:0,yPercent:100},{xPercent:-100,yPercent:0},{xPercent:0,yPercent:-100},{xPercent:100,yPercent:0}
+  //         ]
+  //       }
+  //     },"-=5")
+  //     .to([illus,pts,draw],5,{
+  //       scale:0
+  //     },"-=5")
+  //     .to(wormhole,5,{
+  //       autoAlpha:1,
+  //       scale:1
+  //     },"-=5");
+  //
+  //     var scene = new ScrollMagic.Scene({
+  //       triggerElement:bdy,
+  //       triggerHook:0,
+  //       duration:2*wHeight
+  //     })
+  //     .setTween(time.play())
+  //     .addTo(controller);
+  // }
+  // graphicsAnimation();
 });

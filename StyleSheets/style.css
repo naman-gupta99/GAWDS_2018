@@ -12,7 +12,7 @@ body{
 /* css for container in which all animation occurs */
 #animation{
   width:100%;
-  height:1000vh;
+  height:2000vh;
 }
 
 /* css for background of paperplane */
@@ -174,11 +174,38 @@ body{
 /* css for low poly letters */
 .frontpoly{
   position:fixed;
-  width:30%;
+  width:100%;
+  height:100%;
+}
+.frontpoly svg{
+  position:relative;
+  width:70%;
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
 }
+.frontpoly svg path{
+  transform: scale(0);
+}
+
+.backpoly{
+  position: fixed;
+  width:100%;
+  height:100%;
+}
+
+.backpoly svg{
+  position:relative;
+  width:70%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+.backpoly svg path{
+  transform: scale(0);
+}
+
 /* css for fog */
 .fog{
   position: fixed;
@@ -188,11 +215,6 @@ body{
   height: 100%;
   background-color: #ddd;
   opacity:0;
-}
-
-.frontpoly svg path{
-  fill:#333;
-  transform:scale(0);
 }
 
 /* css for logos */
@@ -298,26 +320,154 @@ body{
   left:120%;
   transform:translate(-50%,-50%);
 }
+
 .illustrator object,.draw object,.photoshop object{
   position:relative;
   width:100%;
 }
 
 /* css for portal */
-.portal{
+
+.portalWhole{
   position:fixed;
-  width:20%;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  opacity:0;
+  width:100%;
+  height: 100%;
+  transform:scale(0);
 }
+.portal{
+  position:absolute;
+  width:40%;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+.portal svg{
+  position:relative;
+  width:100%;
+}
+
+.whitedot{
+  position:absolute;
+  width:1%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+.whitedot svg{
+  position:relative;
+  width:100%;
+}
+
+.stream {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    perspective: 800px
+}
+.stream > div {
+    position: absolute;
+    height: 5px;
+    border-radius: 10px;
+    opacity:0;
+}
+#r1 {
+    background: linear-gradient(to right, red, transparent);
+    top: 0;
+    left: 10%;
+    width: 20vh;
+}
+#r2 {
+    background: linear-gradient(to right, red, transparent);
+    top: 70%;
+    right: 0;
+    width: 20vh;
+}
+#r3{
+    background: linear-gradient(to right, red, transparent);
+    top:90%;
+    left:10%;
+    width:50vh;
+}
+#b1 {
+    background: linear-gradient(to right, blue, transparent);
+    top: 80%;
+    left: 0;
+    width: 40vh;
+}
+#b2 {
+    background: linear-gradient(to right, blue, transparent);
+    top: 10%;
+    right: 0;
+    width: 30vh;
+}
+#b3{
+    background: linear-gradient(to right, blue, transparent);
+    top: 10%;
+    left: 0;
+    width: 50vh;
+}
+#o1 {
+    background: linear-gradient(to right, orange, transparent);
+    top: 20%;
+    right: 0;
+    width: 40vh;
+}
+#o2 {
+    background: linear-gradient(to right, orange, transparent);
+    top: 50%;
+    left: 0;
+    width: 50vh;
+}
+#o3{
+    background: linear-gradient(to right, orange, transparent);
+    top: 80%;
+    right: 0;
+    width: 20vh;
+}
+#y1 {
+    background: linear-gradient(to right, yellow, transparent);
+    top: 100%;
+    right: 20%;
+    width: 30vh;
+}
+#y2 {
+    background: linear-gradient(to right, yellow, transparent);
+    top: 40%;
+    right: 0%;
+    width: 50vh;
+}
+#y3{
+  background: linear-gradient(to right, yellow, transparent);
+    top: 30%;
+    left: 15%;
+    width: 40vh;
+}
+#g1 {
+    background: linear-gradient(to right, green, transparent);
+    top: 70%;
+    left: 5%;
+    width: 30vh;
+}
+#g2 {
+    background: linear-gradient(to right, green, transparent);
+    top: 90%;
+    right: 5%;
+    width: 50vh;
+}
+#g3{
+    background: linear-gradient(to right, green, transparent);
+    top: 40%;
+    right: 5%;
+    width: 20vh;
+}
+
 @media screen and (max-width:1100px) {
   .css,.html,.js{
     width:10%;
   }
   .portal{
-    width:30%;
+
   }
   .firebase{
     width:20%;
@@ -325,8 +475,11 @@ body{
   .illustrator,.photoshop,.draw{
     width:10%;
   }
-  .frontpoly{
-    width:40%;
+  .frontpoly svg{
+    width:90%;
+  }
+  .backpoly svg{
+    width:90%;
   }
 }
 @media screen and (max-width:760px) {
@@ -334,7 +487,7 @@ body{
     width: 15%;
   }
   .portal{
-    width:40%;
+
   }
   .firebase{
     width:30%;
@@ -342,7 +495,59 @@ body{
   .illustrator,.photoshop,.draw{
     width:20%;
   }
-  .frontpoly{
-    width:50%;
+  .frontpoly svg{
+    width:100%;
   }
+  .backpoly svg{
+    width:100%;
+  }
+}
+
+
+
+/* svg inline css */
+
+.portal-1 {
+  fill: none;
+  stroke: #9e005d;
+  stroke-miterlimit: 10;
+}
+@keyframes portal1{
+  from{
+    transform-origin:center;
+    transform:rotate(0deg);
+  }
+  to{
+    transform-origin:center;
+    transform:rotate(360deg);
+  }
+}
+@keyframes portal2{
+  from{
+    transform-origin:center;
+    transform:rotate(0deg);
+  }
+  to{
+    transform-origin:center;
+    transform:rotate(-360deg);
+  }
+}
+@keyframes portal3{
+  from{
+    transform-origin:center;
+    transform:rotate(0deg);
+  }
+  to{
+    transform-origin:center;
+    transform:rotate(720deg);
+  }
+}
+#k1{
+  animation:portal1 10s linear infinite;
+}
+#k2{
+  animation:portal2 10s linear infinite;
+}
+#k3{
+  animation:portal3 10s linear infinite;
 }
