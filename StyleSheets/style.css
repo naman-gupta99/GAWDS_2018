@@ -7,12 +7,13 @@
 body{
   overflow-x: hidden;
   overflow-y: hidden;
+  background-color: orange;
 }
 
 /* css for container in which all animation occurs */
 #animation{
   width:100%;
-  height:2000vh;
+  height:3000vh;
 }
 
 /* css for background of paperplane */
@@ -22,6 +23,13 @@ body{
   width:100%;
   height:100%;
   background: linear-gradient(#0066B2 ,#60D4FF);
+}
+
+#innerBackground{
+  width:100vw;
+  height: 100vh;
+  background:linear-gradient(#000,purple);
+  opacity:0;
 }
 
 #clouds{
@@ -156,21 +164,6 @@ body{
     width: 50vh;
 }
 
-/* css for wording */
-.wording{
-  position: fixed;
-  width:auto;
-  top:10%;
-  right:10%;
-  left:10%;
-  opacity: 0;
-}
-
-.wording object{
-  position: relative;
-  width:100%;
-}
-
 /* css for low poly letters */
 .frontpoly{
   position:fixed;
@@ -184,8 +177,9 @@ body{
   top:50%;
   transform:translate(-50%,-50%);
 }
+
 .frontpoly svg path{
-  transform: scale(0);
+  transform:scale(0);
 }
 
 .backpoly{
@@ -348,7 +342,7 @@ body{
 
 .whitedot{
   position:absolute;
-  width:1%;
+  width:10px;
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
@@ -462,12 +456,90 @@ body{
     width: 20vh;
 }
 
+.galaxy{
+  position: fixed;
+  width:100%;
+  height: 100%;
+  background-image: url("../Includes/Space graphics/background.jpg");
+  background-size: cover;
+  opacity: 0;
+}
+
+.galaxy svg{
+  position: fixed;
+  height: 100vh;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  opacity: 0;
+}
+
+.writtenContent{
+  position: fixed;
+  padding:10px;
+  transform:translateY(-50%);
+  opacity:0;
+}
+
+.writtenContentClassToggle{
+  position:absolute;
+  top:2600vh;
+}
+
+.god{
+  /* width:100%; */
+  font-size: 9vmin;
+  color: #fff;
+  /* background-color: red; */
+}
+
+.gawds{
+  /* font-family: Anurati; */
+  font-size: 10vmin;
+  /* text-align: right; */
+  color: #fff;
+  /* background-color: red; */
+}
+
+.about{
+  font-size: 3vmin;
+  color: #fff;
+}
+
+.laptopContainer{
+  position: fixed;
+  width:100%;
+  height: 100%;
+  opacity:1;
+  background-color: #f28ed1;
+  top:50%;
+  left:50%;
+  transition: position 10s linear;
+  transform:translate(-50%,-50%);
+  overflow: hidden;
+  opacity:0;
+}
+
+.laptopClassToggle{
+  position:absolute;
+  top:2600vh;
+}
+
+.laptop{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+}
+
+.laptop svg{
+  width:120vw;
+}
+
 @media screen and (max-width:1100px) {
   .css,.html,.js{
     width:10%;
-  }
-  .portal{
-
   }
   .firebase{
     width:20%;
@@ -501,9 +573,33 @@ body{
   .backpoly svg{
     width:100%;
   }
+  .writtenContent{
+    top:75%;
+    text-align: center;
+  }
+
+  .god{
+    /* width:100%; */
+    font-size: 9vw;
+    /* background-color: red; */
+  }
+
+  .gawds{
+    font-size: 10vw;
+  }
+
+  .about{
+    font-size: 3vw;
+  }
 }
 
-
+@media screen and (min-width:761px) {
+  .writtenContent{
+    top:50%;
+    width:50%;
+    text-align: center;
+  }
+}
 
 /* svg inline css */
 
@@ -512,6 +608,7 @@ body{
   stroke: #9e005d;
   stroke-miterlimit: 10;
 }
+
 @keyframes portal1{
   from{
     transform-origin:center;
