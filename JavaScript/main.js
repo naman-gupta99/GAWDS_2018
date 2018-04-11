@@ -2,7 +2,8 @@ $(function(){
   var plane = $('#plane'),
       bdy = $('body'),
       controller = new ScrollMagic.Controller(),
-      wHeight = window.innerHeight;
+      wHeight = window.innerHeight,
+      innerWidth = window.innerWidth;
   //     cnWidth = container.width(),
   //     cnHeight = container.height(),
   //     wWidth = window.innerWidth,
@@ -178,7 +179,7 @@ $(function(){
     var scene = new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:2*wHeight
+      duration:4*wHeight
     })
     .setTween(time.play())
     .addTo(controller);
@@ -251,8 +252,8 @@ $(function(){
     var scene =new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:5*wHeight,
-      offset:2*wHeight
+      duration:8*wHeight,
+      offset:4*wHeight
     })
     .setTween( time.play() )
     .addTo(controller);
@@ -348,8 +349,8 @@ $(function(){
       var scene = new ScrollMagic.Scene({
         triggerHook:0,
         triggerElement:bdy,
-        duration:5*wHeight,
-        offset:7*wHeight
+        duration:8*wHeight,
+        offset:12*wHeight
       })
       .setTween(time.play())
       .addTo(controller);
@@ -412,8 +413,8 @@ $(function(){
       var scene = new ScrollMagic.Scene({
         triggerElement:bdy,
         triggerHook:0,
-        duration:5*wHeight,
-        offset:12*wHeight
+        duration:8*wHeight,
+        offset:20*wHeight
       })
       .setTween(time.play())
       .addTo(controller);
@@ -451,8 +452,8 @@ $(function(){
       var scene = new ScrollMagic.Scene({
         triggerElement:bdy,
         triggerHook:0,
-        duration:3*wHeight,
-        offset:17*wHeight
+        duration:5*wHeight,
+        offset:28*wHeight
       })
       .setTween(time.play())
       .addTo(controller);
@@ -501,6 +502,12 @@ $(function(){
 
   function laptopAnimation(){
 
+    if(innerWidth <= '760'){
+      var scalePlane = 0.5;
+    } else {
+      var scalePlane = 0.7;
+    }
+
     var topS = $('#sit')[0].getBoundingClientRect().top;
     var leftS = $('#sit')[0].getBoundingClientRect().left;
 
@@ -522,7 +529,7 @@ $(function(){
         rotation:0,
         rotationX:20,
         rotationY:"180_ccw",
-        scale:0.5,
+        scale:scalePlane,
         transformOrigin:"center center"
       },10)
       .to(plane,2,{
@@ -532,8 +539,8 @@ $(function(){
     var scene = new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:3*wHeight,
-      offset:20*wHeight
+      duration:6*wHeight,
+      offset:33*wHeight
     })
     .setTween(time.play())
     .addTo(controller);
@@ -609,8 +616,8 @@ $(function(){
     var scene = new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      duration:wHeight,
-      offset:21*wHeight
+      duration:2*wHeight,
+      offset:35*wHeight
     })
     .setTween(time.play())
     .addTo(controller);
@@ -620,7 +627,7 @@ $(function(){
   function convertToCircle(){
     var laptopContainer = $('.laptopContainer');
     var laptop = $('.laptop');
-    var innerWidth = window.innerWidth;
+
 
     var time = new TimelineMax({paused:true});
 
@@ -629,9 +636,6 @@ $(function(){
       time
         .to('.writtenContent',5,{
           opacity:1
-        })
-        .to(plane,1,{
-          opacity:0
         })
         .to(laptopContainer,10,{
           width:'40vw',
@@ -651,9 +655,6 @@ $(function(){
         .to('.writtenContent',5,{
           opacity:1
         })
-        .to(plane,1,{
-          opacity:0
-        })
         .to(laptopContainer,10,{
           width:'40vw',
           height:'40vw',
@@ -671,186 +672,52 @@ $(function(){
     var scene = new ScrollMagic.Scene({
         triggerElement:bdy,
         triggerHook:0,
-        duration:2*wHeight,
-        offset:23*wHeight
+        duration:6*wHeight,
+        offset:39*wHeight
       })
       .setTween(time.play())
       .addTo(controller);
 
+    var lowerlimit = wHeight*39;
+    var upperlimit = wHeight*45;
+    var topS;
+    var leftS;
+
+    $(window).scroll(function(){
+      if(window.pageYOffset > lowerlimit && window.pageYOffset < upperlimit){
+          topS = $('#sit')[0].getBoundingClientRect().top;
+          leftS = $('#sit')[0].getBoundingClientRect().left;
+
+          $('#plane').css({'top':topS+'px','left':leftS+'px'});
+      }
+    });
+
   }
   convertToCircle();
 
-  function changeFixedToAbsolute(){
-    var w = 26*wHeight;
+  function contentStart(){
+    var time = new TimelineMax();
 
-    var scene1 = new ScrollMagic.Scene({
+    time
+      .to(plane,10,{
+        top:"50%",
+        left:"10%",
+        zIndex:3,
+        rotationY:0,
+        rotationX:"-90_ccw",
+        rotationZ:180,
+        scale:1
+      });
+
+    var scene = new ScrollMagic.Scene({
       triggerElement:bdy,
       triggerHook:0,
-      offset:26*wHeight
+      duration:wHeight,
+      offset:46*wHeight
     })
-    .setClassToggle('.laptopContainer', 'laptopClassToggle')
-    .addTo(controller);
-
-    var scene2 = new ScrollMagic.Scene({
-      triggerElement:bdy,
-      triggerHook:0,
-      offset:26*wHeight
-    })
-    .setClassToggle('.writtenContent', 'writtenContentClassToggle')
+    .setTween(time.play())
     .addTo(controller);
   }
-  changeFixedToAbsolute();
+  contentStart();
 
 });
-
-/*
-
-
-function end(){
-  $(window).scroll(function(){
-    if(pageYOffset >= 23*wHeight){
-      $('.laptopContainer').css('top',23*wHeight+'px');
-      $('.laptopContainer').css('position','absolute');
-
-      $('#background').css('top',23*wHeight+'px');
-      $('#background').css('position','absolute');
-
-      $('.wind').css('top',23*wHeight+'px');
-      $('.wind').css('position','absolute');
-
-      $('.wording').css('top',23*wHeight+'px');
-      $('.wording').css('position','absolute');
-
-      $('.frontpoly').css('top',23*wHeight+'px');
-      $('.frontpoly').css('position','absolute');
-
-      $('.backpoly').css('top',23*wHeight+'px');
-      $('.backpoly').css('position','absolute');
-
-      $('.fog').css('top',23*wHeight+'px');
-      $('.fog').css('position','absolute');
-
-      $('.css').css('top',23*wHeight+'px');
-      $('.css').css('position','absolute');
-
-      $('.html').css('top',23*wHeight+'px');
-      $('.html').css('position','absolute');
-
-      $('.js').css('top',23*wHeight+'px');
-      $('.js').css('position','absolute');
-
-      $('.nodejs').css('top',23*wHeight+'px');
-      $('.nodejs').css('position','absolute');
-
-      $('.django').css('top',23*wHeight+'px');
-      $('.django').css('position','absolute');
-
-      $('.sql').css('top',23*wHeight+'px');
-      $('.sql').css('position','absolute');
-
-      $('.firebase').css('top',23*wHeight+'px');
-      $('.firebase').css('position','absolute');
-
-      $('.illustrator').css('top',23*wHeight+'px');
-      $('.illustrator').css('position','absolute');
-
-      $('.draw').css('top',23*wHeight+'px');
-      $('.draw').css('position','absolute');
-
-      $('.photoshop').css('top',23*wHeight+'px');
-      $('.photoshop').css('position','absolute');
-
-      $('.portalWhole').css('top',23*wHeight+'px');
-      $('.portalWhole').css('position','absolute');
-
-      $('.whitedot').css('top',23*wHeight+'px');
-      $('.whitedot').css('position','absolute');
-
-      $('.stream').css('top',23*wHeight+'px');
-      $('.stream').css('position','absolute');
-
-      $('.galaxy').css('top',23*wHeight+'px');
-      $('.galaxy').css('position','absolute');
-
-      $('.galaxy svg').css('top',23*wHeight+'px');
-      $('.galaxy svg').css('position','absolute');
-
-      $('.laptopContainer').css('top',23*wHeight+'px');
-      $('.laptopContainer').css('position','absolute');
-
-    }else{
-      $('.laptopContainer').css('top','0');
-      $('.laptopContainer').css('position','fixed');
-
-      $('#background').css('top','0');
-      $('#background').css('position','fixed');
-
-      $('.wind').css('top','0');
-      $('.wind').css('position','fixed');
-
-      $('.wording').css('top','0');
-      $('.wording').css('position','fixed');
-
-      $('.frontpoly').css('top','0');
-      $('.frontpoly').css('position','fixed');
-
-      $('.backpoly').css('top','0');
-      $('.backpoly').css('position','fixed');
-
-      $('.fog').css('top','0');
-      $('.fog').css('position','fixed');
-
-      $('.css').css('top','0');
-      $('.css').css('position','fixed');
-
-      $('.html').css('top','0');
-      $('.html').css('position','fixed');
-
-      $('.js').css('top','0');
-      $('.js').css('position','fixed');
-
-      $('.nodejs').css('top','-10%');
-      $('.nodejs').css('position','fixed');
-
-      $('.django').css('top','-10%');
-      $('.django').css('position','fixed');
-
-      $('.sql').css('top','-10%');
-      $('.sql').css('position','fixed');
-
-      $('.firebase').css('top','-10%');
-      $('.firebase').css('position','fixed');
-
-      $('.illustrator').css('top','0');
-      $('.illustrator').css('position','fixed');
-
-      $('.draw').css('top','0');
-      $('.draw').css('position','fixed');
-
-      $('.photoshop').css('top','0');
-      $('.photoshop').css('position','fixed');
-
-      $('.portalWhole').css('top','0');
-      $('.portalWhole').css('position','fixed');
-
-      $('.whitedot').css('top','0');
-      $('.whitedot').css('position','fixed');
-
-      $('.stream').css('top','0');
-      $('.stream').css('position','fixed');
-
-      $('.galaxy').css('top','0');
-      $('.galaxy').css('position','fixed');
-
-      $('.galaxy svg').css('top','0');
-      $('.galaxy svg').css('position','fixed');
-
-      $('.laptopContainer').css('top','0');
-      $('.laptopContainer').css('position','fixed');
-    }
-  })
-
-
-}
-  end();
-*/
