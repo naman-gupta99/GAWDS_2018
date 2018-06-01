@@ -1,4 +1,10 @@
 $(function(){
+  //Optimization Implimentation
+  $(window).on('load', function() {
+    var allDiv = document.getElementsByTagName('div');
+    allDiv.willChange = 'scroll-position';
+  });
+
   var plane = $('#plane'),
       bdy = $('body'),
       controller = new ScrollMagic.Controller(),
