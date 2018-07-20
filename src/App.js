@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import "./App.css";
-import blog_img from "./blog_img.jpg";
-import Blog from "./blog.js";
-import BlogForm from "./blogForm.js";
-import { config } from "./config/config";
-import firebase from "firebase/app";
-import "firebase/database";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import * as routes from "./routes";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import './App.css';
+import blog_img from './blog_img.jpg';
+import Blog from './blog.js';
+import BlogForm from './blogForm.js';
+import { config } from './config/config';
+import firebase from 'firebase/app';
+import 'firebase/database';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import * as routes from './routes';
+import { Link } from 'react-router-dom';
 
-import BlogEditor from "./editor";
-import BlogEdit from "./blogEdit";
+import BlogEditor from './editor';
+import BlogEdit from './blogEdit';
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends Component {
     this.database = this.app
       .database()
       .ref()
-      .child("blogs");
+      .child('blogs');
 
     this.addBlog = this.addBlog.bind(this);
     this.removeBlog = this.removeBlog.bind(this);
@@ -37,7 +37,7 @@ class App extends Component {
   componentDidMount() {
     const previousBlog = this.state.blogs;
 
-    this.database.on("child_added", snap => {
+    this.database.on('child_added', snap => {
       previousBlog.push({
         blogId: snap.key,
         blogContent: snap.val().blogContent
@@ -47,7 +47,7 @@ class App extends Component {
       });
     });
 
-    this.database.on("child_removed", snap => {
+    this.database.on('child_removed', snap => {
       for (var i = 0; i < previousBlog.length; i++) {
         if (previousBlog[i].id === snap.key) {
           previousBlog.splice(i, 1);
@@ -58,7 +58,6 @@ class App extends Component {
       });
     });
   }
-
 
   addBlog(blog) {
     this.database.push().set({ blogContent: blog });
@@ -79,23 +78,27 @@ class App extends Component {
           <nav>
             <div className="container">
               <div className="nav-wrapper">
-                <a href="/" className="brand-logo black-text sleek">
+                <a href="/" className="brand-logo black-text sleek white-text">
                   GAWDS 18
                 </a>
                 <a
                   href="#"
                   data-activates="mobile-demo"
                   className="button-collapse">
-                  <i className="material-icons black-text">menu</i>
+                  <i className="material-icons white-text">menu</i>
                 </a>
                 <ul className="right hide-on-med-and-down">
-                  <li className="black-text">
-                    <Link className="black-text sleek" to={routes.Blog_}>
+                  <li>
+                    <Link
+                      className="white-text sleek waves-effect waves-teal"
+                      to={routes.Blog_}>
                       Blogs
                     </Link>
                   </li>
                   <li>
-                    <Link className="black-text sleek" to={routes.Editor_}>
+                    <Link
+                      className="btn my-btn waves-effect waves-light"
+                      to={routes.Editor_}>
                       Write a Blog!
                     </Link>
                   </li>
