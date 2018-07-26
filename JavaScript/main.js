@@ -1,20 +1,5 @@
 $(function(){
-  //Insertion of SVG's
-    //Insertion of Portal
-
-
-
   $(window).on('load', function() {
-    //Insertion of SVG's
-      //Insertion of Portal
-      var ajax = new XMLHttpRequest();
-      ajax.open("GET", "Includes/Portal.svg", true);
-      ajax.send();
-      ajax.onload = function(e) {
-        var divPortal = document.getElementById('portal');
-        divPortal.innerHTML = ajax.responseText;
-      }
-
     //Optimization Implimentation
     var allDiv = document.getElementsByTagName('div');
     allDiv.willChange = 'scroll-position';
